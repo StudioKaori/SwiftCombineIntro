@@ -17,9 +17,19 @@ class MyCustomTableCell: UITableViewCell {
         return button
     }()
  
+    // pass through subject can be executed many times
+    // parameter <What we want to pass back, never return(Error never occur)>
+    let action = PassthroughSubject<String, Never>()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(button)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapButton() {
+        // The argument will go to "String" of PassthroughSubject<String, Never>
+        action.send("Cool! Button was tapped.")
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource{
     
     private var models = [String]()
     
-    var observer: AnyCancellable?
+    var observers: [AnyCancellable] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource{
         tableView.dataSource = self
         tableView.frame = view.bounds
         
-        observer = APICaller.shared.fetchCompanies()
+        APICaller.shared.fetchCompanies()
             // Where do you want to receive, main thread
             .receive(on: DispatchQueue.main)
             .sink(
@@ -74,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource{
             receiveValue: { [weak self] value in
                 self?.models = value
                 self?.tableView.reloadData()
-            })
+            }).store(in: &observers)
     }
 
     // MARK: - tableview data source
@@ -87,7 +97,11 @@ class ViewController: UIViewController, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MyCustomTableCell else {
             fatalError()
         }
-        //cell.textLabel?.text = models[indexPath.row]
+        // subscribe: .sink returns observer, so store it to observers
+        // Without storing observer, the memory will be released.
+        cell.action.sink(receiveValue: { string in
+            print(string)
+        }).store(in: &observers)
         
         return cell
     }
