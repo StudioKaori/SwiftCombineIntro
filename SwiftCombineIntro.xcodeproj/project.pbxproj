@@ -13,6 +13,7 @@
 		43836BB42852249400A199A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43836BB22852249400A199A8 /* Main.storyboard */; };
 		43836BB62852249600A199A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43836BB52852249600A199A8 /* Assets.xcassets */; };
 		43836BB92852249600A199A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43836BB72852249600A199A8 /* LaunchScreen.storyboard */; };
+		43836BC12852277C00A199A8 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836BC02852277C00A199A8 /* ApiCaller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		43836BB52852249600A199A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43836BB82852249600A199A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43836BBA2852249600A199A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43836BC02852277C00A199A8 /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				43836BAC2852249400A199A8 /* AppDelegate.swift */,
 				43836BAE2852249400A199A8 /* SceneDelegate.swift */,
 				43836BB02852249400A199A8 /* ViewController.swift */,
+				43836BC02852277C00A199A8 /* ApiCaller.swift */,
 				43836BB22852249400A199A8 /* Main.storyboard */,
 				43836BB52852249600A199A8 /* Assets.xcassets */,
 				43836BB72852249600A199A8 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				43836BB12852249400A199A8 /* ViewController.swift in Sources */,
 				43836BAD2852249400A199A8 /* AppDelegate.swift in Sources */,
 				43836BAF2852249400A199A8 /* SceneDelegate.swift in Sources */,
+				43836BC12852277C00A199A8 /* ApiCaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
